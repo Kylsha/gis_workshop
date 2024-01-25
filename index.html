@@ -8,22 +8,14 @@
     <title>GIS-мастерская</title>
     <style>
         body {
-            /* width: 100vw; */
             font-family: monospace;
             max-width: 1024px;
-            /* min-width: 1024px; */
             margin: 0 auto;
             padding: 1rem;
             word-wrap: break-word;
             background-color: #e0e0e0;
             color: #999;
-            /* overflow-y: overlay;  */
-            /* overflow: overlay; */
-            /* overflow: auto; */
-            /* overflow-x: hidden; 
-           
-            /* overflow-y: scroll; */
-            /* scrollbar-gutter: stable both-edges; */
+            
         }
         #container{
             max-width: 1024px;
@@ -59,8 +51,6 @@
             display: inline-block;
             transition: background-color 0.3s ease;
             cursor: pointer;
-            
-
         }
         header:hover {
             background-color: #e0e0e0;
@@ -79,8 +69,6 @@
             float: left;
             display: flex;
             gap:24px;
-            
-
         }
 
         nav {
@@ -170,6 +158,7 @@
             /* width: 100%; */
             user-select: none;
             width: -webkit-fill-available;
+            box-shadow: 0 0 16px rgba(0,0,0,0.5)
         }
 
         @media (max-width: 768px) {
@@ -187,23 +176,31 @@
     <div id="container">
         <header  onclick="showDescription('gis_om_info')">
             <h1>GIS-мастерская</h1>
+
         </header>
     
         <main >
            
             <nav>
-                <a href="#plugins" onclick="showDescription('plugins')">Плагины</a>
+                <a href="#plugins-all" onclick="showDescription('plugins')">Плагины</a>
                 <a href="#interactive-map" onclick="showDescription('imaps')">Сервисы</a>
                 <a href="#instructions" onclick="showDescription('guides')">Обучение</a>
+                <a href="#goals-new" onclick="showDescription('goals')">Цели</a>
             </nav>
             <article >
                 <section id="description">
                     <div id="gis_om_info" class="section-tab">
+                        <div class="img_preview">
+                            <img class="pic_in ru" src="pics/gis_pr.png" style="display: block;">
+                        </div>
                         <p>Добро пожаловать на домашнюю страницу GIS-мастерской!</p>
                         <p>Наша задача - развивать направление геоинформационных технологий в Институте Генплана Москвы. К этому можно отнести как обучение и консультации по ГИС-тематике, так и разработку инструментов, методик и научных обоснований в проектной деятельности. </p>
                         <br>
                     </div>
                     <div id="plugins" class="section-tab">
+                        <div class="img_preview">
+                            <img class="pic_in ru" src="pics/plugins.png" style="display: block;">
+                        </div>
                         <p>В процессе работы над разными проектами мы регулярно сталкиваемся с задачами по автоматизации процессов подготовки данных. Это является поводом для создания инструментов, помогающих решать подобные задачи.</p>
                         <br>
                         <p>К ним можно отнести следующие разработки:</p>
@@ -216,18 +213,50 @@
                           
                     </div>
                     <div id="imaps" class="section-tab">
-                        <p>Интерактивные карты позволяют быстро и наглядно отобразить наши данные, а также использовать инструменты веб- разработки для решения некоторых задач. По сути некоторые процессы работы в qgis можно перенести в веб, что сделает более доступным гис-проекты.</p>
+                        <div class="img_preview">
+                            <img class="pic_in ru" src="pics/services.png" style="display: block;">
+                        </div>
+                        <p>К сервисам на текущий момент можно отнести интерактивные карты, которые позволяют быстро и наглядно отображать рабочие данные, а также использовать инструменты веб-разработки для решения определенных задач.</p>
                         <br>
-                        <p>К работающим проектам можно отнести:</p>
+                        <p>По сути некоторые процессы работы в QGIS можно перенести в веб, что сделает ГИС-проекты более доступными удобными в работе.</p>
+                        <br>
+                        <p>К актуальным проектам можно отнести:</p>
                         <ul>
                             <li>Аналог Цифрового двойника</li>
-                            <li>Web-GenSlider</li>
-                            <li>Загрузчик данных УГИП</li>
+                            <li>Web-версия GenSlider</li>
+                            <li>Загрузчик данных ЕГИП</li>
+                            <li>Документация разработок отдела</li>
                         </ul>  
 
                     </div>
                     <div id="guides" class="section-tab">
-                        <p>Ссылка на гайды</p>
+                        <div class="img_preview">
+                            <img class="pic_in ru" src="pics/study.png" style="display: block;">
+                        </div>
+                        <p>В целях улучшения качества работы и развития компетенций коллег наши сотрудники проводят обучение работе в QGIS и в целом работе с геоданными.</p>
+                        <br>
+                        <p>Также мы оказываем помощь по нетривиальным задачам и проводим мастер-классы в зависимости от требований и проектов</p>
+                        <br>
+                        <p>Цели проведения обучения:</p>
+                        <ul>
+                            <li>Внедрение единого подхода в работе с геоданными</li>
+                            <li>Обучение коллег самостоятельно разбираться в работе с геоданными без делегирования задач смежным подразделениям</li>
+                            <li>Получение обратной связи для решения новых задач по автоматизации процессов и удобства работы в ГИС</li>
+                        </ul>  
+                    </div>
+                    <div id="goals" class="section-tab">
+                        <div class="img_preview">
+                            <img class="pic_in ru" src="pics/goals.png" style="display: block;">
+                        </div>
+                        <p>Подразделение не может существовать без глобальных целей. Вместе с тем мы продолжаем являться звеном в процессе исполнения поручений.</p>
+                        <br>
+                        <p>С учетом нашего опыта в ГИС можно выделить миссии подразделения:</p>
+                        <ul>
+                            <li>Дальнейшая автоматизация процессов средствами ГИС-инженерии</li>
+                            <li>Плановое обучение коллег работе с геоданными</li>
+                            <li>Развитие деятельности, связанной с научными обоснованиями методик расчетов</li>
+                        </ul> 
+
                     </div>
                     <!-- <div class="img_preview">
                         <img class="pic_in ru" src="pics/magic_bullet.png" style="display: block;">
@@ -245,7 +274,6 @@
         
         
         function showDescription(description) {
-            console.log(description)
             all_tabs = Array.from(document.querySelectorAll('.section-tab'))
             for(let element of all_tabs){
                 elem_id = element.id
