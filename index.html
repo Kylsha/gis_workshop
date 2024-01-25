@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru" >
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script type="module" crossorigin="" src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.5.1/js/OverlayScrollbars.min.js"></script>
+    <link rel="stylesheet" crossorigin="" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.5.1/css/OverlayScrollbars.min.css">
+    <title>GIS-мастерская</title>
+    <style>
+        body {
+            /* width: 100vw; */
+            font-family: monospace;
+            max-width: 1024px;
+            /* min-width: 1024px; */
+            margin: 0 auto;
+            padding: 1rem;
+            word-wrap: break-word;
+            background-color: #e0e0e0;
+            color: #999;
+            /* overflow-y: overlay;  */
+            /* overflow: overlay; */
+            /* overflow: auto; */
+            /* overflow-x: hidden; 
+           
+            /* overflow-y: scroll; */
+            /* scrollbar-gutter: stable both-edges; */
+        }
+        #container{
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+        
+        /* ::-webkit-scrollbar {
+            width: 0.7em;
+            position: absolute;
+            left: 0;
+        }
+        ::-webkit-scrollbar-track {
+            position: absolute;
+            right: -3rem;
+            top: -50rem;
+            background-color: rgba(150, 150, 150, 0.15);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(150, 150, 150, 0.25);
+            border-radius: 50px;
+        } */
+
+        header {
+            width: 100%;
+            height: max-content;
+            text-align: center;
+            background-color: #fffcf2;
+            border-radius: 16px ;
+            box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2),
+                        -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+            margin-bottom:24px;
+            font-size: 1rem;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            
+
+        }
+        header:hover {
+            background-color: #e0e0e0;
+        }
+        header:active {
+            /* color: red; */
+            background-color: #929292;
+        }
+
+        header h1{
+            
+        }
+
+        main {
+            width: 100%;
+            float: left;
+            display: flex;
+            gap:24px;
+            
+
+        }
+
+        nav {
+            flex:1;
+            font-weight: bold;
+            
+            font-size: 2rem;
+            float: left;
+            /* width: 20%; */
+            overflow: hidden;
+            background-color: #fffcf2;
+            text-align: center;
+            height: fit-content;
+            border-radius: 16px;
+            box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2),
+                        -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+
+        }
+
+        nav a {
+            color: #999;
+            display: block;
+            padding: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            /* border-bottom-width: 4px;
+            border-bottom-style: solid;
+            border-image: linear-gradient(to right, #fffcf2, #999, #fffcf2) 1; */
+            border-radius: 16px;
+        }
+        nav a:last-child {
+            border-bottom: none; /* Убираем линию-разделитель справа для последней ссылки */
+        }
+
+        nav a:hover {
+            background-color: #e0e0e0;
+        }
+        nav a:active {
+            background-color: #929292;
+        }
+
+
+        article{
+            flex:4;
+            float: left;
+            font-size: 2rem;
+            padding: 8px;
+            /* width: 80%; */
+            background-color: #f1f1f1;
+            height: 300px; /* only for demonstration, should be removed */
+            border-radius: 16px;
+            box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2),
+                        -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+            background-color: #fffcf2;
+            /* margin-left: 24px; */
+            height: fit-content;
+            margin-bottom: 24px;
+            /* width: -webkit-fill-available; */
+        }
+        section {
+            padding: 8px;
+        }
+        p, li {
+            font-size: 1.0em;
+            margin: auto;
+            font-weight: bold;
+        }
+
+        .img_preview {
+            position: relative;
+            display: block;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            padding: 16px;
+        }
+        .pic_in {
+            display: block;
+            border-radius: 16px;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            /* width: 100%; */
+            user-select: none;
+            width: -webkit-fill-available;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+
+            nav {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body >
+    <div id="container">
+        <header  onclick="showDescription('gis_om_info')">
+            <h1>GIS-мастерская</h1>
+        </header>
+    
+        <main >
+           
+            <nav>
+                <a href="#plugins" onclick="showDescription('plugins')">Плагины</a>
+                <a href="#interactive-map" onclick="showDescription('imaps')">Сервисы</a>
+                <a href="#instructions" onclick="showDescription('guides')">Обучение</a>
+            </nav>
+            <article >
+                <section id="description">
+                    <div id="gis_om_info" class="section-tab">
+                        <p>Добро пожаловать на домашнюю страницу GIS-мастерской!</p>
+                        <p>Наша задача - развивать направление геоинформационных технологий в Институте Генплана Москвы. К этому можно отнести как обучение и консультации по ГИС-тематике, так и разработку инструментов, методик и научных обоснований в проектной деятельности. </p>
+                        <br>
+                    </div>
+                    <div id="plugins" class="section-tab">
+                        <p>В процессе работы над разными проектами мы регулярно сталкиваемся с задачами по автоматизации процессов подготовки данных. Это является поводом для создания инструментов, помогающих решать подобные задачи.</p>
+                        <br>
+                        <p>К ним можно отнести следующие разработки:</p>
+                        <ul>
+                            <li>Плагин GenSlider</li>
+                            <li>Плагин "Колба"</li>
+                            <li>Инструменты для подготовки данных для Цифрового двойника</li>
+                            <li>Загрузчики, конвертеры и обработчики данных</li>
+                        </ul>  
+                          
+                    </div>
+                    <div id="imaps" class="section-tab">
+                        <p>Интерактивные карты позволяют быстро и наглядно отобразить наши данные, а также использовать инструменты веб- разработки для решения некоторых задач. По сути некоторые процессы работы в qgis можно перенести в веб, что сделает более доступным гис-проекты.</p>
+                        <br>
+                        <p>К работающим проектам можно отнести:</p>
+                        <ul>
+                            <li>Аналог Цифрового двойника</li>
+                            <li>Web-GenSlider</li>
+                            <li>Загрузчик данных УГИП</li>
+                        </ul>  
+
+                    </div>
+                    <div id="guides" class="section-tab">
+                        <p>Ссылка на гайды</p>
+                    </div>
+                    <!-- <div class="img_preview">
+                        <img class="pic_in ru" src="pics/magic_bullet.png" style="display: block;">
+                    </div>
+                    <div class="img_preview">
+                        <img class="pic_in ru" src="pics/icon_egip.png" style="display: block;">
+                    </div> -->
+                </section>
+                
+            </article>
+        </main>
+    </div>
+
+    <script>
+        
+        
+        function showDescription(description) {
+            console.log(description)
+            all_tabs = Array.from(document.querySelectorAll('.section-tab'))
+            for(let element of all_tabs){
+                elem_id = element.id
+                if (elem_id==description){
+                    element.style.display = "block";
+                }else{
+                    element.style.display = "none";
+                }
+            }
+        }
+        showDescription('gis_om_info')
+        // const scroll = new LocomotiveScroll({
+        //     el: document.querySelector('[data-scroll-content]'),
+        //     smooth: true
+        // });
+        // var el = document.querySelector('body');
+        // SimpleScrollbar.initEl(el);
+        // new MiniBar('#tet');
+
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     OverlayScrollbars(document.querySelector('body'), {
+        //         overflow: {
+        //             x: 'hidden',
+        //         },
+        //         });
+        // ;})
+        
+    </script>
+</body>
+</html>
